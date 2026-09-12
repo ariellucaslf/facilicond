@@ -1,7 +1,6 @@
 <div align="center">
-  <img src="https://via.placeholder.com/150x150.png?text=Facili+Logo" alt="Facili Logo" width="120" />
   
-  # 🏢 Facili - SaaS de Gestão Condominial & Portaria 671/MTE
+  # Facili - SaaS de Gestão Condominial & Portaria 671/MTE
   
   **O ecossistema definitivo que transforma a portaria analógica em uma operação digital, segura e rastreável.**
 
@@ -20,7 +19,7 @@
 
 ---
 
-## 🚨 O Problema do Mundo Real
+## O Problema do Mundo Real
 
 A administração de condomínios sofre cronicamente com o excesso de papelada, a falta de segurança nos controles de acesso e a comunicação fragmentada. Na prática, isso se traduz em:
 
@@ -29,7 +28,7 @@ A administração de condomínios sofre cronicamente com o excesso de papelada, 
 - **Desorganização de Encomendas:** Extravios, moradores sem aviso de que o pacote chegou, e a falta de assinatura no momento da retirada.
 - **Controles Paralelos e Informais:** Uso indiscriminado do WhatsApp para solicitar reparos, reservar áreas comuns ou notificar ocorrências, pulverizando dados importantes.
 
-## 💡 A Solução
+## A Solução
 
 O **FaciliCond** é um produto SaaS (Software as a Service) focado no segmento B2B (condomínios comerciais e residenciais) que ataca diretamente esses problemas operacionais. Ele integra uma tríade de aplicações:
 1. **Totem de Autoatendimento:** Um kiosk digital que roda em tablets na portaria para registro eletrônico de ponto (REP-A) e validação de acessos.
@@ -38,7 +37,7 @@ O **FaciliCond** é um produto SaaS (Software as a Service) focado no segmento B
 
 ---
 
-## 🛠️ Destaques de Engenharia (Engineering Highlights)
+## Destaques de Engenharia (Engineering Highlights)
 
 Como engenheiro responsável pela concepção e arquitetura deste sistema, estruturei a aplicação com foco na escalabilidade, segurança e integridade de dados críticos.
 
@@ -68,7 +67,7 @@ Para garantir que a API principal não sofra latência e continue respondendo em
 
 ---
 
-## 🏛️ Arquitetura do Sistema
+## Arquitetura do Sistema
 
 Abaixo o fluxograma de comunicação entre os clientes, a API Restful e os serviços de infraestrutura de dados:
 
@@ -90,8 +89,8 @@ graph TD
     end
 
     subgraph "Data & Queues Layer (Models)"
-        D[(🗄️ PostgreSQL)<br/>Banco de Dados Relacional<br/>PostGIS / Isolamento Multi-Tenant]:::db
-        E[(🔴 Redis)<br/>Cache em Memória &<br/>BullMQ para Filas de Tarefas]:::db
+        D[(PostgreSQL)<br/>Banco de Dados Relacional<br/>PostGIS / Isolamento Multi-Tenant]:::db
+        E[(Redis)<br/>Cache em Memória &<br/>BullMQ para Filas de Tarefas]:::db
     end
 
     %% Connections
@@ -105,7 +104,7 @@ graph TD
 
 
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 A escolha tecnológica foi guiada pela busca de estabilidade, tipagem forte e desenvolvimento rápido de um ecossistema multiplataforma (Web e Mobile).
 
