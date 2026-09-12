@@ -80,17 +80,17 @@ graph TD
     classDef external fill:#c53030,stroke:#9b2c2c,stroke-width:2px,color:#fff,rx:8px,ry:8px;
 
     subgraph "Frontend Clients (Views)"
-        A[📱 Facili App<br/>React Native / Expo<br/>App Totem & App Staff]:::client
-        B[💻 Facili Web<br/>Next.js / App Router<br/>Painel Web do Síndico]:::client
+        A["Facili App<br/>React Native / Expo<br/>App Totem & App Staff"]:::client
+        B["Facili Web<br/>Next.js / App Router<br/>Painel Web do Síndico"]:::client
     end
 
     subgraph "Backend Services (Controllers)"
-        C[⚙️ Facili API<br/>Node.js / Express / TypeScript<br/>Core de Regras de Negócio e Gateways]:::api
+        C["Facili API<br/>Node.js / Express / TypeScript<br/>Core de Regras de Negócio e Gateways"]:::api
     end
 
     subgraph "Data & Queues Layer (Models)"
-        D[(PostgreSQL)<br/>Banco de Dados Relacional<br/>PostGIS / Isolamento Multi-Tenant]:::db
-        E[(Redis)<br/>Cache em Memória &<br/>BullMQ para Filas de Tarefas]:::db
+        D[("PostgreSQL<br/>Banco de Dados Relacional<br/>PostGIS / Isolamento Multi-Tenant")]:::db
+        E[("Redis<br/>Cache em Memória &<br/>BullMQ para Filas de Tarefas")]:::db
     end
 
     %% Connections
