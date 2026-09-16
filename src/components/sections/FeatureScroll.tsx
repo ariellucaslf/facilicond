@@ -17,27 +17,26 @@ export function FeatureScroll() {
       <div className="sticky top-0 h-screen flex items-center overflow-hidden py-24">
         <div className="container mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           
-          {/* Left Text Content */}
           <div className="relative h-[400px] flex flex-col justify-center">
             <FeatureText 
               progress={scrollYProgress} 
               points={[0, 0.1, 0.23, 0.33]} 
-              title="Totem Kiosk Facial"
-              description="Controle de acesso e ponto eletrônico (REP-A) 100% automatizado na portaria. Segurança máxima com reconhecimento facial de última geração."
+              title="Acesso e Encomendas"
+              description="Controle de acesso de visitantes e bipagem ágil de pacotes na portaria. O morador é notificado instantaneamente e assina via celular, sem papelada perdida."
               icon={<KeySquare size={32} className="text-brand-primary" />}
             />
             <FeatureText 
               progress={scrollYProgress} 
               points={[0.33, 0.43, 0.56, 0.66]} 
-              title="Painel de Gestão"
-              description="Visão panorâmica do condomínio. Portaria em tempo real, funcionários ativos, relatórios financeiros e aprovação de ocorrências em um só lugar."
+              title="Transparência Financeira"
+              description="Visão panorâmica para o síndico. Monitore a inadimplência, emita multas e advertências com rastreabilidade, e feche o caixa sem dor de cabeça no Painel de Gestão."
               icon={<MonitorSmartphone size={32} className="text-brand-secondary" />}
             />
             <FeatureText 
               progress={scrollYProgress} 
               points={[0.66, 0.76, 0.9, 1]} 
-              title="App do Colaborador"
-              description="A ferramenta no bolso da sua equipe. Recebimento de encomendas via escaneamento e notificações push de chamados de manutenção."
+              title="Conveniência no Bolso"
+              description="Ocorrências virtuais, reserva de áreas comuns, comunicados oficiais e liberação de visitantes. A comunicação flui sem precisar do WhatsApp."
               icon={<Smartphone size={32} className="text-brand-accent" />}
             />
           </div>
