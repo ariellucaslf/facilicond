@@ -20,21 +20,21 @@ export function FeatureScroll() {
           <div className="relative h-[400px] flex flex-col justify-center">
             <FeatureText 
               progress={scrollYProgress} 
-              points={[0, 0.1, 0.23, 0.33]} 
+              points={[0, 0.1, 0.2, 0.3]} 
               title="Acesso e Encomendas"
               description="Controle de acesso de visitantes e bipagem ágil de pacotes na portaria. O morador é notificado instantaneamente e assina via celular, sem papelada perdida."
               icon={<KeySquare size={32} className="text-brand-primary" />}
             />
             <FeatureText 
               progress={scrollYProgress} 
-              points={[0.33, 0.43, 0.56, 0.66]} 
+              points={[0.35, 0.45, 0.55, 0.65]} 
               title="Transparência Financeira"
               description="Visão panorâmica para o síndico. Monitore a inadimplência, emita multas e advertências com rastreabilidade, e feche o caixa sem dor de cabeça no Painel de Gestão."
               icon={<MonitorSmartphone size={32} className="text-brand-secondary" />}
             />
             <FeatureText 
               progress={scrollYProgress} 
-              points={[0.66, 0.76, 0.9, 1]} 
+              points={[0.7, 0.8, 0.9, 1]} 
               title="Conveniência no Bolso"
               description="Ocorrências virtuais, reserva de áreas comuns, comunicados oficiais e liberação de visitantes. A comunicação flui sem precisar do WhatsApp."
               icon={<Smartphone size={32} className="text-brand-accent" />}
@@ -43,9 +43,9 @@ export function FeatureScroll() {
 
           {/* Right Visual Content */}
           <div className="relative h-[400px] md:h-[500px] w-full rounded-[2rem] bg-brand-light overflow-hidden flex items-center justify-center border border-brand-lighter shadow-inner">
-            <FeatureImage progress={scrollYProgress} points={[0, 0.1, 0.23, 0.33]} label="Totem Kiosk" bg="bg-brand-dark" />
-            <FeatureImage progress={scrollYProgress} points={[0.33, 0.43, 0.56, 0.66]} label="Painel Web" bg="bg-white" />
-            <FeatureImage progress={scrollYProgress} points={[0.66, 0.76, 0.9, 1]} label="App Mobile" bg="bg-brand-primary" />
+            <FeatureImage progress={scrollYProgress} points={[0, 0.1, 0.2, 0.3]} label="Totem Kiosk" bg="bg-brand-dark" />
+            <FeatureImage progress={scrollYProgress} points={[0.35, 0.45, 0.55, 0.65]} label="Painel Web" bg="bg-white" />
+            <FeatureImage progress={scrollYProgress} points={[0.7, 0.8, 0.9, 1]} label="App Mobile" bg="bg-brand-primary" />
           </div>
 
         </div>

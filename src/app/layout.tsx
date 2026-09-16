@@ -15,8 +15,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "FaciliCond | Gestão Inteligente de Condomínios",
-  description: "Ecossistema definitivo que transforma a portaria analógica em uma operação digital, segura e rastreável. Gestão inteligente, condomínios em perfeita harmonia.",
-  keywords: ["gestão condominial", "portaria virtual", "controle de acesso", "aplicativo para condomínio"],
+  description: "Mais que gestão, tranquilidade. O ecossistema definitivo que elimina a desorganização de encomendas, a falta de transparência financeira e os ruídos de comunicação.",
+  keywords: ["gestão condominial", "administradora de condomínios", "controle de acesso", "aplicativo para condomínio"],
 };
 
 export default function RootLayout({
