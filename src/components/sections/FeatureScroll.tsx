@@ -21,21 +21,21 @@ export function FeatureScroll() {
           <div className="relative h-[400px] flex flex-col justify-center">
             <FeatureText 
               progress={scrollYProgress} 
-              range={[0, 0.33]} 
+              points={[0, 0.1, 0.23, 0.33]} 
               title="Totem Kiosk Facial"
               description="Controle de acesso e ponto eletrônico (REP-A) 100% automatizado na portaria. Segurança máxima com reconhecimento facial de última geração."
               icon={<KeySquare size={32} className="text-brand-primary" />}
             />
             <FeatureText 
               progress={scrollYProgress} 
-              range={[0.33, 0.66]} 
+              points={[0.33, 0.43, 0.56, 0.66]} 
               title="Painel de Gestão"
               description="Visão panorâmica do condomínio. Portaria em tempo real, funcionários ativos, relatórios financeiros e aprovação de ocorrências em um só lugar."
               icon={<MonitorSmartphone size={32} className="text-brand-secondary" />}
             />
             <FeatureText 
               progress={scrollYProgress} 
-              range={[0.66, 1]} 
+              points={[0.66, 0.76, 0.9, 1]} 
               title="App do Colaborador"
               description="A ferramenta no bolso da sua equipe. Recebimento de encomendas via escaneamento e notificações push de chamados de manutenção."
               icon={<Smartphone size={32} className="text-brand-accent" />}
@@ -44,9 +44,9 @@ export function FeatureScroll() {
 
           {/* Right Visual Content */}
           <div className="relative h-[400px] md:h-[500px] w-full rounded-[2rem] bg-brand-light overflow-hidden flex items-center justify-center border border-brand-lighter shadow-inner">
-            <FeatureImage progress={scrollYProgress} range={[0, 0.33]} label="Totem Kiosk" bg="bg-brand-dark" />
-            <FeatureImage progress={scrollYProgress} range={[0.33, 0.66]} label="Painel Web" bg="bg-white" />
-            <FeatureImage progress={scrollYProgress} range={[0.66, 1]} label="App Mobile" bg="bg-brand-primary" />
+            <FeatureImage progress={scrollYProgress} points={[0, 0.1, 0.23, 0.33]} label="Totem Kiosk" bg="bg-brand-dark" />
+            <FeatureImage progress={scrollYProgress} points={[0.33, 0.43, 0.56, 0.66]} label="Painel Web" bg="bg-white" />
+            <FeatureImage progress={scrollYProgress} points={[0.66, 0.76, 0.9, 1]} label="App Mobile" bg="bg-brand-primary" />
           </div>
 
         </div>
@@ -55,9 +55,9 @@ export function FeatureScroll() {
   );
 }
 
-function FeatureText({ progress, range, title, description, icon }: { progress: any, range: [number, number], title: string, description: string, icon: React.ReactNode }) {
-  const opacity = useTransform(progress, [range[0] - 0.1, range[0] + 0.05, range[1] - 0.05, range[1] + 0.1], [0, 1, 1, 0]);
-  const y = useTransform(progress, [range[0] - 0.1, range[0] + 0.05, range[1] - 0.05, range[1] + 0.1], [40, 0, 0, -40]);
+function FeatureText({ progress, points, title, description, icon }: { progress: any, points: number[], title: string, description: string, icon: React.ReactNode }) {
+  const opacity = useTransform(progress, points, [0, 1, 1, 0]);
+  const y = useTransform(progress, points, [40, 0, 0, -40]);
 
   return (
     <motion.div style={{ opacity, y, pointerEvents: 'none' }} className="absolute inset-x-0 flex flex-col gap-6">
@@ -72,9 +72,9 @@ function FeatureText({ progress, range, title, description, icon }: { progress: 
   );
 }
 
-function FeatureImage({ progress, range, label, bg }: { progress: any, range: [number, number], label: string, bg: string }) {
-  const opacity = useTransform(progress, [range[0] - 0.1, range[0] + 0.05, range[1] - 0.05, range[1] + 0.1], [0, 1, 1, 0]);
-  const scale = useTransform(progress, [range[0] - 0.1, range[0] + 0.05, range[1] - 0.05, range[1] + 0.1], [0.95, 1, 1, 1.05]);
+function FeatureImage({ progress, points, label, bg }: { progress: any, points: number[], label: string, bg: string }) {
+  const opacity = useTransform(progress, points, [0, 1, 1, 0]);
+  const scale = useTransform(progress, points, [0.95, 1, 1, 1.05]);
 
   return (
     <motion.div style={{ opacity, scale }} className={`absolute inset-0 flex items-center justify-center ${bg} p-12 text-center`}>
