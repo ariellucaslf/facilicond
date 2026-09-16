@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cores da Marca (Extraídas do Guideline Visual) */
+  --color-brand-primary: #2563EB;
+  --color-brand-primary-dark: #1E3A8A;
+  --color-brand-primary-darker: #1E40AF;
+  --color-brand-primary-light: #3B82F6;
+  --color-brand-secondary: #06B6D4;
+  --color-brand-accent: #10B981;
+  --color-brand-accent-light: #22C55E;
+  --color-brand-dark: #0F172A;
+  --color-brand-light: #F1F5F9;
+  --color-brand-lighter: #E5E7EB;
+
+  /* Fontes Personalizadas */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-poppins);
+}
+
+:root {
+  --background: var(--color-brand-light);
+  --foreground: var(--color-brand-dark);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom Utilities para textos e componentes */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
