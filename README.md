@@ -1,8 +1,8 @@
 <div align="center">
   
-  # Facili - SaaS de Gestão Condominial & Portaria 671/MTE
+  # Facili - Mais que gestão, tranquilidade.
   
-  **O ecossistema definitivo que transforma a portaria analógica em uma operação digital, segura e rastreável.**
+  **O ecossistema definitivo que resolve a desorganização de encomendas, a falta de transparência financeira e ruídos de comunicação no seu condomínio.**
 
   [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)]()
   [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)]()
@@ -13,8 +13,6 @@
 
   <br />
 
-
-
 </div>
 
 ---
@@ -23,17 +21,18 @@
 
 A administração de condomínios sofre cronicamente com o excesso de papelada, a falta de segurança nos controles de acesso e a comunicação fragmentada. Na prática, isso se traduz em:
 
-- **Gargalos na Portaria:** Filas de visitantes e prestadores de serviço devido a controles manuais em cadernos, além da dificuldade do porteiro em contatar os moradores.
-- **Insegurança Trabalhista (Furos de Ponto):** Folhas de ponto analógicas que são facilmente adulteradas, gerando passivos trabalhistas graves para o condomínio.
-- **Desorganização de Encomendas:** Extravios, moradores sem aviso de que o pacote chegou, e a falta de assinatura no momento da retirada.
-- **Controles Paralelos e Informais:** Uso indiscriminado do WhatsApp para solicitar reparos, reservar áreas comuns ou notificar ocorrências, pulverizando dados importantes.
+- **Controles Paralelos e Informais:** Uso indiscriminado de grupos de WhatsApp para notificar ocorrências, gerando ruído, discussões e pulverizando dados importantes do condomínio.
+- **Desorganização de Encomendas:** Extravios, moradores sem aviso de que o pacote chegou e falta de assinatura no momento da retirada.
+- **Falta de Transparência Financeira:** Síndicos e moradores sem visibilidade clara sobre o fluxo de caixa, relatórios e inadimplência.
+- **Dificuldade em Aplicar Regras:** Falta de rastreabilidade para o envio de multas e advertências por infrações.
 
 ## A Solução
 
 O **FaciliCond** é um produto SaaS (Software as a Service) focado no segmento B2B (condomínios comerciais e residenciais) que ataca diretamente esses problemas operacionais. Ele integra uma tríade de aplicações:
-1. **Totem de Autoatendimento:** Um kiosk digital que roda em tablets na portaria para registro eletrônico de ponto (REP-A) e validação de acessos.
-2. **Painel do Síndico (Web):** Centro de controle gerencial, financeiro e operacional.
-3. **App do Colaborador (Mobile):** Ferramenta no bolso do funcionário para controle da própria jornada, registro de entregas e comunicados.
+
+1. **Painel do Síndico (Web):** Centro de controle gerencial, emissão de multas, advertências, relatórios financeiros e operacional.
+2. **Totem de Autoatendimento:** Um kiosk digital que roda em tablets na portaria para registro rápido de entrada/saída de visitantes.
+3. **App do Colaborador e Morador (Mobile):** Ferramenta no bolso para recebimento de encomendas via QR Code, acompanhamento de comunicados oficiais e abertura de ocorrências virtuais.
 
 ---
 
@@ -44,24 +43,19 @@ Como engenheiro responsável pela concepção e arquitetura deste sistema, estru
 ### 1. Isolamento Rigoroso de Dados (Multi-tenancy)
 Por ser um SaaS atendendo a múltiplos condomínios simultaneamente no mesmo banco de dados, a arquitetura exige um isolamento perfeito dos tenants. 
 - Implementei o modelo **Row-Level Security / Tenant ID**, onde a chave `condominioId` permeia todas as entidades principais do banco (PostgreSQL + Prisma ORM). 
-- A camada de *Services / Repositories* assegura que nenhuma query vaze dados entre diferentes clientes, sendo o `condominioId` injetado diretamente pelo token JWT decodificado no middleware de autenticação.
+- A camada de *Services / Repositories* assegura que nenhuma query vaze dados entre diferentes clientes, sendo o `condominioId` injetado diretamente pelo token JWT decodificado.
 
 ### 2. Autenticação Segura e Controle de Dispositivos (Kiosk Mode)
 O Totem de portaria fica em um ambiente físico público e vulnerável. Para mitigar riscos:
 - **Device Tokens:** O Totem não usa login humano tradicional. Ele é pareado uma única vez através de um token de dispositivo exclusivo (Device Access Token).
-- **Kiosk Mode:** O aplicativo React Native (Expo) opera confinado na tela, impedindo que os usuários saiam do app e acessem o sistema operacional do tablet. Toda comunicação via biometria/câmera com o backend é cifrada e assinada.
+- **Kiosk Mode:** O aplicativo React Native (Expo) opera confinado na tela, impedindo que os usuários saiam do app e acessem o sistema operacional. Toda comunicação é cifrada e assinada.
 
-### 3. Persistência Imutável (Event Sourcing Light) e REP-A
-Atendendo rigorosamente à **Portaria 671 do Ministério do Trabalho (MTE)**:
-- Os registros de ponto (`records`) são projetados como tabelas *append-only* (imutáveis). 
-- Qualquer "correção" ou abono (justificativas) gera um novo registro relacionado (trilha de auditoria), garantindo que o espelho de ponto jamais perca sua integridade legal.
-
-### 4. Background Jobs e Resiliência
+### 3. Background Jobs e Resiliência Financeira
 Para garantir que a API principal não sofra latência e continue respondendo em poucos milissegundos (sub-50ms):
-- Rotinas pesadas (ex: disparos de e-mails emergenciais da portaria, geração e fechamento da folha de ponto em PDF no final do mês) foram completamente extraídas do *Event Loop* principal do Node.js.
+- Rotinas pesadas (ex: disparos de e-mails emergenciais, consolidação de relatórios financeiros, notificações de multas) foram completamente extraídas do *Event Loop* principal do Node.js.
 - Utilizei **Redis** acoplado ao **BullMQ** para criar uma estrutura resiliente de *Message Queuing* com políticas de retry automáticas.
 
-### 5. Padrões de Projeto (MVC & SOLID)
+### 4. Padrões de Projeto (MVC & SOLID)
 - O backend está rigorosamente organizado seguindo o padrão MVC adaptado, com separação clara de responsabilidades: **Rotas (Routes) ➔ Controladores (Controllers) ➔ Filas (Queues)**.
 - O uso de TypeScript strict garante previsibilidade em tempo de compilação, eliminando bugs silenciosos no tráfego de cargas dinâmicas.
 
@@ -80,7 +74,7 @@ graph TD
     classDef external fill:#c53030,stroke:#9b2c2c,stroke-width:2px,color:#fff,rx:8px,ry:8px;
 
     subgraph "Frontend Clients (Views)"
-        A["Facili App<br/>React Native / Expo<br/>App Totem & App Staff"]:::client
+        A["Facili App<br/>React Native / Expo<br/>App Totem, App Staff e App Morador"]:::client
         B["Facili Web<br/>Next.js / App Router<br/>Painel Web do Síndico"]:::client
     end
 
@@ -102,16 +96,14 @@ graph TD
 
 ---
 
-
-
 ## Stack Tecnológico
 
 A escolha tecnológica foi guiada pela busca de estabilidade, tipagem forte e desenvolvimento rápido de um ecossistema multiplataforma (Web e Mobile).
 
 ### Frontend (Client-side)
-- **Painel Administrativo:** Next.js 16 (App Router), React 19
+- **Painel Administrativo & Financeiro:** Next.js 16 (App Router), React 19
 - **Estilização (Web):** Tailwind CSS v4, Server Components
-- **Mobile (Staff & Totem):** React Native, Expo SDK 57
+- **Mobile (Morador, Staff & Totem):** React Native, Expo SDK
 - **Estilização (Mobile):** NativeWind v4 (Tailwind para React Native)
 
 ### Backend (Server-side)
@@ -124,5 +116,5 @@ A escolha tecnológica foi guiada pela busca de estabilidade, tipagem forte e de
 - **Banco de Dados Relacional:** PostgreSQL
 - **ORM / Query Builder:** Prisma ORM (com migrations versionadas)
 - **Cache e Message Broker:** Redis
-- **Background Jobs:** BullMQ (Disparo de E-mails, PDFs de Fechamento)
+- **Background Jobs:** BullMQ
 - **Containerização:** Docker e Docker Compose (para ambientes locais e CI)
