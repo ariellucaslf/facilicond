@@ -1,35 +1,110 @@
 @import "tailwindcss";
 
 @theme {
-  /* Cores da Marca (Extraídas do Guideline Visual) */
-  --color-brand-primary: #2563EB;
-  --color-brand-primary-dark: #1E3A8A;
-  --color-brand-primary-darker: #1E40AF;
-  --color-brand-primary-light: #3B82F6;
-  --color-brand-secondary: #06B6D4;
-  --color-brand-accent: #10B981;
-  --color-brand-accent-light: #22C55E;
-  --color-brand-dark: #0F172A;
-  --color-brand-light: #F1F5F9;
-  --color-brand-lighter: #E5E7EB;
+  --color-paper: #f3eee6;
+  --color-paper-deep: #e7dfd2;
+  --color-ink: #12151c;
+  --color-ink-soft: #4a5160;
+  --color-line: #d8d0c4;
+  --color-brand-primary: #2154d6;
+  --color-brand-primary-dark: #173dad;
+  --color-brand-primary-darker: #122f86;
+  --color-brand-primary-light: #3b6eef;
+  --color-brand-secondary: #0e9aa8;
+  --color-brand-accent: #1f8a5b;
+  --color-brand-dark: #12151c;
+  --color-brand-light: #f3eee6;
+  --color-brand-lighter: #e7dfd2;
 
-  /* Fontes Personalizadas */
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-poppins);
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-heading: var(--font-fraunces), ui-serif, Georgia, serif;
 }
 
 :root {
-  --background: var(--color-brand-light);
-  --foreground: var(--color-brand-dark);
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-sans);
 }
 
-/* Custom Utilities para textos e componentes */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 600;
+::selection {
+  background: #2154d6;
+  color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 560;
+  letter-spacing: -0.03em;
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 7.2vw, 6.4rem);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  font-weight: 560;
+}
+
+.display-md {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 1.4vw, 1.28rem);
+  line-height: 1.65;
+  color: var(--color-ink-soft);
+}
+
+.site-wrap {
+  width: min(1180px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .site-wrap {
+    width: min(1180px, calc(100% - 4rem));
+  }
+}
+
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-line), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
