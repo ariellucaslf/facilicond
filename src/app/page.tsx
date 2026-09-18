@@ -1,34 +1,25 @@
-import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { PainPoints } from "@/components/sections/PainPoints";
-import { FeatureScroll } from "@/components/sections/FeatureScroll";
-import { ImpactCTA } from "@/components/sections/ImpactCTA";
+import { Problem } from "@/components/sections/Problem";
+import { Ecosystem } from "@/components/sections/Ecosystem";
+import { ProductTour } from "@/components/sections/ProductTour";
+import { Plans } from "@/components/sections/Plans";
+import { FAQ } from "@/components/sections/FAQ";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function Home() {
   return (
-    <main className="flex flex-col bg-brand-light">
+    <main className="overflow-x-hidden bg-paper">
       <Navbar />
       <Hero />
-      <PainPoints />
-      <FeatureScroll />
-      <ImpactCTA />
-      
-      {/* Footer Minimalista */}
-      <footer className="bg-brand-dark text-white pt-16 pb-12 border-t border-white/5">
-         <div className="container mx-auto px-6 text-center md:text-left">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-               <div className="flex items-center gap-3">
-                 <Image src="/icon.png" alt="FaciliCond Icon" width={32} height={32} className="object-contain" />
-                 <span className="font-heading font-bold text-2xl tracking-tight text-white">FaciliCond</span>
-               </div>
-               
-               <p className="text-white/50 text-sm font-medium">
-                 © {new Date().getFullYear()} FaciliCond. Mais que gestão, tranquilidade. Todos os direitos reservados.
-               </p>
-            </div>
-         </div>
-      </footer>
+      <Problem />
+      <Ecosystem />
+      <ProductTour />
+      <Plans />
+      <FAQ />
+      <FinalCTA />
+      <Footer />
     </main>
   );
 }
