@@ -1,67 +1,69 @@
-"use client";
-
-import { motion } from "framer-motion";
-
-const rows = [
-  {
-    n: "01",
-    title: "O grupo vira assembleia permanente.",
-    body: "Ocorrência, cobrança e fofoca no mesmo fio. Dado oficial some no scroll. O síndico vira moderador de chat.",
-    after: "Mural, ocorrências e avisos com destinatário, horário e histórico.",
-  },
-  {
-    n: "02",
-    title: "A portaria ainda vive de caderno.",
-    body: "Encomenda sem aviso, visitante sem rastro, retirada sem assinatura. Quando some um pacote, sobra conversa.",
-    after: "Registro de encomendas, achados e perdidos, push no app e check-in de visitante no totem.",
-  },
-  {
-    n: "03",
-    title: "O caixa mora em planilha paralela.",
-    body: "Inadimplência, multa e advertência espalhadas. Morador não vê. Síndico não fecha o mês com confiança.",
-    after: "Financeiro no painel, documentos rastreados, transparência para quem precisa ver.",
-  },
-];
+import { ArrowRight, CheckCircle2, XCircle } from "lucide-react";
+import { BEFORE_AFTER } from "@/lib/content";
 
 export function Problem() {
   return (
-    <section id="problema" className="relative bg-ink text-paper py-24 md:py-32">
+    <section
+      id="contraste"
+      className="blueprint-dark relative overflow-hidden bg-navy py-24 text-white md:py-32"
+    >
       <div className="site-wrap">
-        <div className="max-w-3xl">
-          <p className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-[#7ad4de]">
-            O que a gente resolve
-          </p>
-          <h2 className="display-md mt-4 text-white">
-            Administrar não precisa ser um segundo emprego.
-          </h2>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/65">
-            Ferramenta genérica e WhatsApp não foram desenhados para portaria,
-            unidade e assembleia. O FaciliCond foi.
+        <div className="grid items-end gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+          <div>
+            <p className="tag text-brand-mint">O que muda na prática</p>
+            <h2 className="display-md mt-4 text-white">
+              Quando a gestão vive em grupo de mensagem e caderno, tudo vira versão
+              contra versão.
+            </h2>
+          </div>
+          <p className="text-base leading-relaxed text-white/70 lg:pb-1">
+            Ferramenta improvisada não tem vínculo por unidade, não comprova quem
+            retirou uma encomenda e desaparece na troca de síndico. No FaciliCond,
+            cada evento nasce amarrado a unidade, horário e responsável.
           </p>
         </div>
 
-        <div className="mt-16 divide-y divide-white/10 border-y border-white/10">
-          {rows.map((row, i) => (
-            <motion.article
-              key={row.n}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: i * 0.05 }}
-              className="grid gap-6 py-10 md:grid-cols-[5rem_1fr_1fr] md:gap-12"
+        <div className="mt-14 grid gap-4 md:grid-cols-2">
+          {BEFORE_AFTER.map((row, index) => (
+            <article
+              key={row.area}
+              className="reveal flex flex-col justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-6 transition-colors duration-300 hover:border-white/20 md:p-7"
             >
-              <p className="font-display text-2xl text-[#7ad4de]">{row.n}</p>
-              <div>
-                <h3 className="font-display text-2xl md:text-[1.85rem] text-white">{row.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-white/60">{row.body}</p>
-              </div>
-              <p className="self-center rounded-2xl border border-white/10 bg-white/4 px-5 py-4 text-sm leading-relaxed text-white/85">
-                <span className="mb-1 block text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[#7ad4de]">
-                  Com FaciliCond
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <span className="font-display text-xl font-semibold text-white">
+                  {row.area}
                 </span>
-                {row.after}
-              </p>
-            </motion.article>
+                <span className="font-mono text-xs text-brand-mint">
+                  0{index + 1}
+                </span>
+              </div>
+
+              <div className="mt-5 space-y-4">
+                <div className="flex items-start gap-3">
+                  <XCircle className="mt-0.5 size-4 shrink-0 text-white/40" />
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-wider text-white/45">
+                      No improviso
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-white/65">
+                      {row.before}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 rounded-2xl border border-brand-mint/20 bg-brand-primary/20 p-4">
+                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-brand-mint" />
+                  <div>
+                    <p className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-brand-mint">
+                      No FaciliCond <ArrowRight className="size-3" />
+                    </p>
+                    <p className="mt-1 text-sm font-medium leading-relaxed text-white">
+                      {row.after}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </div>
