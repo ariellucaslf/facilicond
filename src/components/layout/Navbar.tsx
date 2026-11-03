@@ -2,15 +2,18 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
+import { APP_URL } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-const links = [
-  { href: "#problema", label: "O problema" },
-  { href: "#sistema", label: "O sistema" },
-  { href: "#funcionalidades", label: "Funcionalidades" },
-  { href: "#planos", label: "Planos" },
+const NAV_LINKS = [
+  { href: "#contraste", label: "O que muda" },
+  { href: "#papeis", label: "Para quem é" },
+  { href: "#modulos", label: "Módulos" },
+  { href: "#seguranca", label: "Segurança" },
+  { href: "#planos", label: "Preços" },
+  { href: "#faq", label: "Dúvidas" },
 ];
 
 export function Navbar() {
@@ -19,61 +22,64 @@ export function Navbar() {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 24);
+    setScrolled(latest > 20);
   });
 
   return (
-    <motion.header
-      initial={{ y: -24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+    <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background,box-shadow,border] duration-300",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled || open
-          ? "border-b border-ink/8 bg-paper/90 shadow-[0_10px_40px_-24px_rgba(18,21,28,0.35)] backdrop-blur-md"
-          : "bg-transparent"
+          ? "border-b border-ink/10 bg-paper/92 shadow-[0_12px_36px_-24px_rgba(11,26,51,0.35)] backdrop-blur-md"
+          : "bg-paper/60 backdrop-blur-xs"
       )}
     >
-      <div className="site-wrap flex items-center justify-between py-4">
-        <a href="#topo" className="relative z-10" onClick={() => setOpen(false)}>
-          <Logo />
+      <div className="site-wrap flex items-center justify-between py-3.5">
+        <a
+          href="#topo"
+          className="relative z-10 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary"
+          onClick={() => setOpen(false)}
+        >
+          <Logo priority />
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Principal">
-          {links.map((link) => (
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
+          {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-[0.92rem] font-medium text-ink-soft transition-colors duration-300 hover:text-ink"
+              className="text-[0.9rem] font-medium text-ink-soft transition-colors duration-200 hover:text-ink"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-2.5 md:flex">
           <a
-            href="https://app.facilicond.online"
-            className="px-3 py-2 text-sm font-semibold text-ink-soft transition-colors duration-300 hover:text-ink"
+            href={APP_URL}
+            className="rounded-full px-4 py-2 text-sm font-semibold text-ink-soft transition-colors duration-200 hover:text-ink"
           >
             Entrar
           </a>
           <a
             href="#planos"
-            className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-primary"
+            className="inline-flex items-center gap-1.5 rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand-primary"
           >
-            Ver planos
+            Simular valor
+            <ArrowUpRight className="size-4" />
           </a>
         </div>
 
         <button
           type="button"
-          className="relative z-10 rounded-full p-2 text-ink md:hidden"
+          className="relative z-10 rounded-xl border border-ink/10 bg-white/70 p-2 text-ink md:hidden"
           aria-expanded={open}
           aria-controls="menu-mobile"
           onClick={() => setOpen((v) => !v)}
         >
           <span className="sr-only">{open ? "Fechar menu" : "Abrir menu"}</span>
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </div>
 
@@ -84,38 +90,41 @@ export function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-t border-ink/8 md:hidden"
+            transition={{ duration: 0.22 }}
+            className="overflow-hidden border-t border-ink/10 bg-paper md:hidden"
             aria-label="Mobile"
           >
             <div className="site-wrap flex flex-col gap-1 py-4">
-              {links.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="rounded-xl px-3 py-3 text-base font-medium text-ink"
+                  className="rounded-xl px-3 py-3 text-base font-medium text-ink transition-colors hover:bg-white/70"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
-              <a
-                href="https://app.facilicond.online"
-                className="mt-2 rounded-full border border-ink/15 px-4 py-3 text-center text-sm font-semibold"
-                onClick={() => setOpen(false)}
-              >
-                Entrar no painel
-              </a>
-              <a
-                href="#planos"
-                className="rounded-full bg-ink px-4 py-3 text-center text-sm font-semibold text-white"
-                onClick={() => setOpen(false)}
-              >
-                Conhecer planos
-              </a>
+              <div className="mt-3 grid grid-cols-2 gap-2.5 border-t border-ink/10 pt-4">
+                <a
+                  href={APP_URL}
+                  className="rounded-full border border-ink/15 bg-white px-4 py-3 text-center text-sm font-semibold text-ink"
+                  onClick={() => setOpen(false)}
+                >
+                  Entrar
+                </a>
+                <a
+                  href="#planos"
+                  className="rounded-full bg-brand-primary px-4 py-3 text-center text-sm font-semibold text-white"
+                  onClick={() => setOpen(false)}
+                >
+                  Simular valor
+                </a>
+              </div>
             </div>
           </motion.nav>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }
