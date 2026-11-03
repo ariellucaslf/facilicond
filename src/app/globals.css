@@ -2,33 +2,40 @@
 
 @theme {
   --color-paper: #f3eee6;
-  --color-paper-deep: #e7dfd2;
-  --color-ink: #12151c;
-  --color-ink-soft: #4a5160;
-  --color-line: #d8d0c4;
+  --color-paper-deep: #e9e2d6;
+  --color-ink: #0d1424;
+  --color-ink-soft: #4a5263;
+  --color-line: #d9d1c4;
+  --color-navy: #0b1a33;
   --color-brand-primary: #2154d6;
   --color-brand-primary-dark: #173dad;
   --color-brand-primary-darker: #122f86;
   --color-brand-primary-light: #3b6eef;
+  --color-brand-sky: #dbe5ff;
   --color-brand-secondary: #0e9aa8;
+  --color-brand-mint: #7ad4de;
   --color-brand-accent: #1f8a5b;
-  --color-brand-dark: #12151c;
-  --color-brand-light: #f3eee6;
-  --color-brand-lighter: #e7dfd2;
+  --color-signal: #e8a33d;
 
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  --font-heading: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-display: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
 }
 
 :root {
   --background: var(--color-paper);
   --foreground: var(--color-ink);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  interpolate-size: allow-keywords;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -38,7 +45,7 @@ body {
 }
 
 ::selection {
-  background: #2154d6;
+  background: var(--color-brand-primary);
   color: #fff;
 }
 
@@ -47,64 +54,222 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 560;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
 }
 
-.grain {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  opacity: 0.045;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+p {
+  text-wrap: pretty;
 }
+
+/* ---------- Tipografia ---------- */
 
 .display-xl {
   font-family: var(--font-display);
-  font-size: clamp(2.75rem, 7.2vw, 6.4rem);
-  line-height: 0.96;
-  letter-spacing: -0.045em;
-  font-weight: 560;
+  font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  font-weight: 650;
 }
 
 .display-md {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.2vw, 3.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  font-weight: 620;
 }
 
 .lede {
-  font-size: clamp(1.05rem, 1.4vw, 1.28rem);
+  font-size: clamp(1.05rem, 1.35vw, 1.22rem);
   line-height: 1.65;
   color: var(--color-ink-soft);
 }
 
-.site-wrap {
-  width: min(1180px, calc(100% - 2rem));
-  margin-inline: auto;
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-@media (min-width: 768px) {
-  .site-wrap {
-    width: min(1180px, calc(100% - 4rem));
+/* ---------- Layout ---------- */
+
+.site-wrap {
+  width: min(1200px, calc(100% - 2rem));
+  margin-inline: auto;
+
+  @media (min-width: 768px) {
+    width: min(1200px, calc(100% - 4rem));
   }
 }
 
-.hairline {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-line), transparent);
+/* Malha de planta baixa — referência arquitetônica da marca */
+.blueprint {
+  background-image:
+    linear-gradient(to right, rgb(13 20 36 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(13 20 36 / 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+}
+
+.blueprint-dark {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ---------- Revelação no scroll (progressive enhancement) ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes reveal-up {
+      from {
+        opacity: 0;
+        translate: 0 28px;
+      }
+    }
+
+    .reveal {
+      animation: reveal-up auto var(--ease-out) backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+/* ---------- Ticker de eventos ---------- */
+
+@keyframes ticker {
+  to {
+    translate: -50% 0;
+  }
+}
+
+.ticker-track {
+  animation: ticker 48s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.ticker[data-paused="true"] .ticker-track,
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track {
+  animation-play-state: paused;
+}
+
+/* ---------- Pulso de status "ao vivo" ---------- */
+
+@keyframes live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(31 138 91 / 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgb(31 138 91 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(31 138 91 / 0);
+  }
+}
+
+.live-dot {
+  animation: live-pulse 2.2s ease-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* ---------- Contagem regressiva do QR ---------- */
+
+@keyframes drain {
+  to {
+    scale: 0 1;
+  }
+}
+
+.qr-timer {
+  transform-origin: left center;
+  animation: drain 300s linear forwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* ---------- Accordion nativo (FAQ) ---------- */
+
+.faq-item::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 0.35s var(--ease-out),
+    content-visibility 0.35s allow-discrete;
+}
+
+.faq-item[open]::details-content {
+  block-size: auto;
+}
+
+.faq-item summary {
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .faq-item::details-content {
+    transition: none;
   }
+}
+
+/* ---------- Range do simulador ---------- */
+
+.range {
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--color-brand-primary) var(--fill, 0%),
+    rgb(13 20 36 / 0.12) var(--fill, 0%)
+  );
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--color-brand-primary);
+  box-shadow: 0 4px 12px -2px rgb(33 84 214 / 0.45);
+  transition: scale 0.2s var(--ease-out);
+}
+
+.range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--color-brand-primary);
+  box-shadow: 0 4px 12px -2px rgb(33 84 214 / 0.45);
+}
+
+.range:active::-webkit-slider-thumb {
+  scale: 1.15;
+}
+
+.range:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 6px;
 }

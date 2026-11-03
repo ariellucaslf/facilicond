@@ -1,4 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
-  <rect width="40" height="40" rx="10" fill="#2154D6"/>
-  <text x="50%" y="50%" dy=".1em" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="18" letter-spacing="-1">FC</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#0B1A33"/>
+  <g fill="#ffffff">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11 27.5L21.5 22V51H11V27.5ZM14.4 51V45.2C14.4 43.985 15.385 43 16.6 43C17.815 43 18.8 43.985 18.8 45.2V51H14.4Z"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.5 10L38.5 18V51H24.5V10ZM28.6 18.4L34.4 21.7V39H28.6V18.4ZM28.2 51V45.2C28.2 43.985 29.185 43 30.4 43C31.615 43 32.6 43.985 32.6 45.2V51H28.2Z"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M41.2 27L52.2 33.2C53.62 34 54.5 35.5 54.5 37.13V51H41.2V27ZM44.8 33.3L50.5 36.5V51H49V45.2C49 43.43 47.57 42 45.8 42C45.45 42 45.11 42.06 44.8 42.16V33.3ZM44.6 51V45.4C44.6 44.52 45.32 43.8 46.2 43.8C47.08 43.8 47.8 44.52 47.8 45.4V51H44.6Z"/>
+    <rect x="8" y="51" width="49" height="3.4" rx="1.7" fill="#7AD4DE"/>
+  </g>
 </svg>
