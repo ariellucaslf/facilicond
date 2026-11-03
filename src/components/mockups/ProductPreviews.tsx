@@ -1,138 +1,295 @@
-export function DashboardPreview({ compact = false }: { compact?: boolean }) {
+import {
+  CalendarCheck2,
+  Check,
+  Clock,
+  FileSpreadsheet,
+  FileText,
+  KeyRound,
+  Package,
+  ShieldAlert,
+  UserCheck,
+  Wrench,
+} from "lucide-react";
+import { FakeQr } from "@/components/mockups/FakeQr";
+import { LogoMark } from "@/components/ui/Logo";
+
+export function AdminRolePreview() {
   return (
     <div
-      className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#171b24] text-left shadow-[0_40px_80px_-24px_rgba(18,21,28,0.55)]"
+      className="overflow-hidden rounded-[1.5rem] border border-ink/12 bg-white shadow-[0_26px_60px_-28px_rgba(11,26,51,0.3)]"
       aria-hidden
     >
-      <div className="flex items-center gap-2 border-b border-white/8 bg-[#1d2230] px-4 py-3">
-        <span className="size-2.5 rounded-full bg-[#f07167]" />
-        <span className="size-2.5 rounded-full bg-[#f4c95d]" />
-        <span className="size-2.5 rounded-full bg-[#5cc689]" />
-        <span className="ml-3 rounded-md bg-white/6 px-2.5 py-1 font-sans text-[10px] tracking-wide text-white/45">
-          app.facilicond.online
+      <div className="flex items-center justify-between border-b border-ink/8 bg-[#f8f6f2] px-4 py-3">
+        <div className="flex items-center gap-2">
+          <LogoMark className="h-4 w-auto" color="#2154d6" />
+          <span className="text-xs font-bold text-navy">Painel da Administração</span>
+        </div>
+        <span className="rounded-md bg-brand-primary/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-brand-primary">
+          SÍNDICO · CONSELHO
         </span>
       </div>
 
-      <div className={`grid grid-cols-[88px_1fr] ${compact ? "min-h-[280px]" : "min-h-[340px]"}`}>
-        <aside className="border-r border-white/8 bg-[#141820] px-3 py-4">
-          <div className="mb-6 h-2 w-10 rounded-full bg-white/20" />
-          {["Painel", "Portaria", "Encomendas", "Financeiro", "Mural"].map((item, i) => (
-            <div
-              key={item}
-              className={`mb-2 rounded-lg px-2 py-1.5 text-[9px] font-semibold ${
-                i === 0 ? "bg-[#2154d6] text-white" : "text-white/40"
-              }`}
-            >
-              {item}
-            </div>
-          ))}
-        </aside>
+      <div className="space-y-3 p-5">
+        <div className="grid grid-cols-3 gap-2.5">
+          <div className="rounded-xl border border-ink/8 bg-[#fbfaf7] p-3">
+            <p className="text-[10px] font-medium text-ink-soft">Unidades ativas</p>
+            <p className="mt-1 font-display text-2xl font-bold text-ink">68/68</p>
+            <p className="font-mono text-[10px] text-brand-accent">planilha importada</p>
+          </div>
+          <div className="rounded-xl border border-ink/8 bg-[#fbfaf7] p-3">
+            <p className="text-[10px] font-medium text-ink-soft">Livro Caixa</p>
+            <p className="mt-1 font-mono text-sm font-bold text-ink">+ R$ 18.420</p>
+            <p className="font-mono text-[10px] text-ink-soft">prestação PDF</p>
+          </div>
+          <div className="rounded-xl border border-ink/8 bg-[#fbfaf7] p-3">
+            <p className="text-[10px] font-medium text-ink-soft">Revisões</p>
+            <p className="mt-1 font-display text-2xl font-bold text-brand-primary">03</p>
+            <p className="font-mono text-[10px] text-ink-soft">cadastros pendentes</p>
+          </div>
+        </div>
 
-        <div className="bg-[#1a1f2b] p-4">
-          <div className="mb-4 flex items-end justify-between">
-            <div>
-              <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#7ad4de]">
-                Residencial Aurora · 84 unidades
-              </p>
-              <p className="mt-1 font-display text-[1.35rem] text-white">Bom dia, síndica.</p>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between rounded-xl border border-ink/8 bg-white px-3.5 py-2.5">
+            <div className="flex items-center gap-2.5">
+              <FileSpreadsheet className="size-4 text-brand-primary" />
+              <div>
+                <p className="text-xs font-semibold text-ink">
+                  Prestação de contas · Outubro
+                </p>
+                <p className="text-[11px] text-ink-soft">
+                  Lançamentos auditáveis + extrato PDF publicado aos moradores
+                </p>
+              </div>
             </div>
-            <span className="rounded-full bg-white/8 px-2.5 py-1 text-[10px] text-white/70">16 set</span>
+            <span className="rounded-md bg-brand-accent/12 px-2 py-0.5 font-mono text-[10px] font-semibold text-brand-accent">
+              PUBLICADO
+            </span>
           </div>
 
-          <div className="grid grid-cols-3 gap-2.5">
+          <div className="flex items-center justify-between rounded-xl border border-ink/8 bg-white px-3.5 py-2.5">
+            <div className="flex items-center gap-2.5">
+              <ShieldAlert className="size-4 text-[#b85d00]" />
+              <div>
+                <p className="text-xs font-semibold text-ink">
+                  Advertência #AD-019 · Unidade 502-A
+                </p>
+                <p className="text-[11px] text-ink-soft">
+                  2 provas anexadas · PDF enviado por e-mail · aguarda via assinada
+                </p>
+              </div>
+            </div>
+            <span className="font-mono text-[10px] text-ink-soft">PDF</span>
+          </div>
+
+          <div className="flex items-center justify-between rounded-xl border border-ink/8 bg-white px-3.5 py-2.5">
+            <div className="flex items-center gap-2.5">
+              <FileText className="size-4 text-brand-secondary" />
+              <div>
+                <p className="text-xs font-semibold text-ink">
+                  Regimento Interno · versão v3
+                </p>
+                <p className="text-[11px] text-ink-soft">
+                  Histórico v1 e v2 preservado em bucket privado
+                </p>
+              </div>
+            </div>
+            <span className="font-mono text-[10px] font-semibold text-brand-primary">
+              URL 60s
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ResidentRolePreview() {
+  return (
+    <div
+      className="mx-auto max-w-sm overflow-hidden rounded-[2rem] border-[6px] border-navy bg-[#fbfaf7] shadow-[0_28px_60px_-24px_rgba(11,26,51,0.45)]"
+      aria-hidden
+    >
+      <div className="mx-auto mt-2.5 h-4 w-20 rounded-full bg-navy" />
+      <div className="space-y-3 p-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-wider text-brand-primary">
+              Unidade 304-B · Bloco B
+            </p>
+            <p className="font-display text-lg font-bold text-ink">
+              Painel do Morador
+            </p>
+          </div>
+          <span className="rounded-full bg-brand-primary/10 px-2.5 py-1 font-mono text-[10px] font-semibold text-brand-primary">
+            App & PWA
+          </span>
+        </div>
+
+        {/* Encomenda com QR */}
+        <div className="flex items-center gap-3 rounded-2xl border border-ink/10 bg-white p-3">
+          <div className="rounded-lg border border-ink/10 p-1.5">
+            <FakeQr seed={31} className="size-12 text-navy" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-ink">
+              <Package className="size-3.5 text-brand-primary" />
+              1 encomenda na portaria
+            </div>
+            <p className="mt-0.5 text-[11px] text-ink-soft">
+              Apresente o QR de 5 min ou autorize terceiro.
+            </p>
+          </div>
+        </div>
+
+        {/* Reserva + Visitante */}
+        <div className="grid grid-cols-2 gap-2.5">
+          <div className="rounded-2xl border border-ink/8 bg-white p-3">
+            <CalendarCheck2 className="size-4 text-brand-accent" />
+            <p className="mt-1.5 text-xs font-semibold text-ink">Salão Gourmet</p>
+            <p className="text-[11px] text-ink-soft">Sáb · 18 convidados</p>
+          </div>
+          <div className="rounded-2xl border border-ink/8 bg-white p-3">
+            <UserCheck className="size-4 text-brand-primary" />
+            <p className="mt-1.5 text-xs font-semibold text-ink">Pré-autorização</p>
+            <p className="text-[11px] text-ink-soft">Técnico Vivo · 14h</p>
+          </div>
+        </div>
+
+        {/* Enquete ativa */}
+        <div className="rounded-2xl bg-navy p-3.5 text-white">
+          <div className="flex items-center justify-between font-mono text-[10px] text-brand-mint">
+            <span>ENQUETE ATIVA</span>
+            <span>71% VOTARAM</span>
+          </div>
+          <p className="mt-1 text-xs font-semibold">
+            Padronização das películas da fachada
+          </p>
+          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/15">
+            <div className="h-full w-[71%] rounded-full bg-brand-mint" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function TotemRolePreview() {
+  return (
+    <div
+      className="overflow-hidden rounded-[1.6rem] border border-white/12 bg-navy p-5 text-white shadow-[0_30px_65px_-26px_rgba(6,26,53,0.65)]"
+      aria-hidden
+    >
+      <div className="flex items-center justify-between border-b border-white/10 pb-3.5">
+        <div className="flex items-center gap-2">
+          <span className="live-dot size-2 rounded-full bg-brand-accent" />
+          <span className="font-mono text-[11px] uppercase tracking-wider text-brand-mint">
+            Totem Guarita Norte · Pareado
+          </span>
+        </div>
+        <span className="rounded-md bg-white/8 px-2 py-0.5 font-mono text-[10px] text-white/70">
+          MODO KIOSK
+        </span>
+      </div>
+
+      <div className="mt-4 grid grid-cols-2 gap-2.5">
+        {[
+          { title: "Receber encomenda", sub: "Foto + aviso imediato", active: true },
+          { title: "Validar retirada", sub: "Leitura do QR 128-bit", active: false },
+          { title: "Entrada de visitante", sub: "Consulta pré-autorizados", active: false },
+          { title: "Veículos e vagas", sub: "Busca por placa ou apto", active: false },
+        ].map((btn) => (
+          <div
+            key={btn.title}
+            className={`rounded-2xl border p-3.5 ${
+              btn.active
+                ? "border-brand-primary-light bg-brand-primary"
+                : "border-white/10 bg-white/5"
+            }`}
+          >
+            <p className="text-xs font-semibold text-white">{btn.title}</p>
+            <p className="mt-0.5 text-[11px] text-white/70">{btn.sub}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Ponto eletrônico no mesmo tablet */}
+      <div className="mt-3 rounded-2xl border border-white/10 bg-white/6 p-3.5">
+        <div className="flex items-center justify-between">
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white">
+            <KeyRound className="size-3.5 text-brand-mint" />
+            Ponto Eletrônico · Selfie + PIN
+          </span>
+          <span className="font-mono text-[10px] text-brand-mint">AFD · 671</span>
+        </div>
+        <p className="mt-1 font-mono text-[10px] text-white/60">
+          SHA-256: 9f4c…e81b · Batida assinada e auditável
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export function StaffRolePreview() {
+  return (
+    <div
+      className="overflow-hidden rounded-[1.5rem] border border-ink/12 bg-white shadow-[0_26px_60px_-28px_rgba(11,26,51,0.3)]"
+      aria-hidden
+    >
+      <div className="flex items-center justify-between border-b border-ink/8 bg-[#f8f6f2] px-4 py-3">
+        <div className="flex items-center gap-2">
+          <Wrench className="size-4 text-brand-primary" />
+          <span className="text-xs font-bold text-navy">
+            Portal do Colaborador · Carlos (Zelador)
+          </span>
+        </div>
+        <span className="font-mono text-[10px] font-semibold text-brand-accent">
+          ESCALA 07h–16h
+        </span>
+      </div>
+
+      <div className="space-y-3 p-5">
+        <div className="flex items-center justify-between rounded-xl border border-ink/8 bg-[#fbfaf7] px-3.5 py-2.5">
+          <div className="flex items-center gap-2.5">
+            <Clock className="size-4 text-brand-primary" />
+            <div>
+              <p className="text-xs font-semibold text-ink">Espelho de ponto mensal</p>
+              <p className="text-[11px] text-ink-soft">
+                Consulta de batidas, folgas, abonos e envio de atestado em anexo
+              </p>
+            </div>
+          </div>
+          <span className="font-mono text-[10px] font-semibold text-brand-primary">
+            PDF
+          </span>
+        </div>
+
+        <div className="rounded-xl border border-ink/10 bg-[#fbfaf7] p-3.5">
+          <div className="flex items-center justify-between">
+            <p className="text-xs font-semibold text-ink">
+              Checklist atribuído · Gerador GER-01
+            </p>
+            <span className="rounded-md bg-brand-primary/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-brand-primary">
+              3 ITENS
+            </span>
+          </div>
+          <div className="mt-2.5 space-y-1.5">
             {[
-              { k: "Encomendas", v: "12", s: "aguardando" },
-              { k: "Visitantes", v: "07", s: "no prédio" },
-              { k: "Inadimplência", v: "4%", s: "neste mês" },
-            ].map((card) => (
-              <div key={card.k} className="rounded-xl border border-white/8 bg-white/4 p-3">
-                <p className="text-[9px] uppercase tracking-wider text-white/40">{card.k}</p>
-                <p className="mt-1 font-display text-2xl text-white">{card.v}</p>
-                <p className="text-[10px] text-white/45">{card.s}</p>
+              "Nível de óleo e líquido de arrefecimento",
+              "Tensão das baterias de partida (24V)",
+              "Teste sem carga e ausência de vazamentos",
+            ].map((step) => (
+              <div
+                key={step}
+                className="flex items-center justify-between rounded-lg bg-white px-3 py-2 text-xs ring-1 ring-ink/6"
+              >
+                <span className="text-ink">{step}</span>
+                <span className="inline-flex items-center gap-1 font-mono text-[10px] font-semibold text-brand-accent">
+                  <Check className="size-3" /> Conforme
+                </span>
               </div>
             ))}
           </div>
-
-          <div className="mt-3 grid grid-cols-[1.2fr_0.8fr] gap-2.5">
-            <div className="rounded-xl border border-white/8 bg-white/4 p-3">
-              <p className="text-[10px] font-semibold text-white/70">Movimento da portaria</p>
-              <div className="mt-3 flex h-16 items-end gap-1.5">
-                {[40, 62, 48, 78, 55, 90, 70].map((h, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 rounded-sm bg-[#2154d6]/80"
-                    style={{ height: `${h}%` }}
-                  />
-                ))}
-              </div>
-            </div>
-            <div className="rounded-xl border border-white/8 bg-[#2154d6] p-3 text-white">
-              <p className="text-[10px] font-semibold text-white/80">Bloco B · apto 304</p>
-              <p className="mt-2 text-[12px] leading-snug">
-                Encomenda Mercado Livre bipada. Morador avisado no app.
-              </p>
-              <p className="mt-3 text-[10px] text-white/70">há 2 min · QR conferido</p>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-export function PhonePreview() {
-  return (
-    <div
-      className="w-[240px] shrink-0 overflow-hidden rounded-[2rem] border-[6px] border-[#1a1d24] bg-[#f7f4ee] shadow-[0_28px_60px_-20px_rgba(18,21,28,0.5)]"
-      aria-hidden
-    >
-      <div className="mx-auto mt-2 h-4 w-20 rounded-full bg-[#1a1d24]" />
-      <div className="px-3 pb-4 pt-3">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
-          App do morador
-        </p>
-        <p className="mt-1 font-display text-xl text-ink">Sua encomenda chegou.</p>
-        <div className="mt-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-ink/5">
-          <p className="text-[11px] font-semibold text-ink">Caixa 2 · Portaria</p>
-          <p className="mt-1 text-[11px] leading-snug text-ink-soft">
-            Pacote Amazon para o apto 12. Assine a retirada no celular — sem caderno.
-          </p>
-          <div className="mt-3 flex items-center justify-between rounded-xl bg-ink px-3 py-2">
-            <span className="font-mono text-[11px] text-white">FC-94821</span>
-            <span className="text-[10px] font-bold text-[#7ad4de]">QR pronto</span>
-          </div>
-        </div>
-        <div className="mt-2 rounded-2xl bg-[#2154d6] p-3 text-white">
-          <p className="text-[11px] font-semibold">Visitante liberado</p>
-          <p className="mt-1 text-[11px] text-white/80">Marina Costa · até 20h · Bloco A</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function TotemPreview() {
-  return (
-    <div
-      className="overflow-hidden rounded-[1.6rem] border border-ink/10 bg-[#0f1218] p-5 text-white shadow-[0_30px_60px_-24px_rgba(18,21,28,0.45)]"
-      aria-hidden
-    >
-      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#7ad4de]">
-        Totem de portaria
-      </p>
-      <p className="mt-2 font-display text-3xl">Check-in em 12 segundos.</p>
-      <div className="mt-5 grid gap-2">
-        {["Visitante", "Prestador", "Encomenda", "Ponto eletrônico"].map((item, i) => (
-          <div
-            key={item}
-            className={`flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold ${
-              i === 0 ? "bg-[#2154d6]" : "bg-white/6"
-            }`}
-          >
-            {item}
-            <span className="text-xs font-medium opacity-70">toque</span>
-          </div>
-        ))}
       </div>
     </div>
   );
