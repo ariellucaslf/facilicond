@@ -1,86 +1,138 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { DashboardPreview, PhonePreview, TotemPreview } from "@/components/mockups/ProductPreviews";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Building2, Check, HardHat, Smartphone, Tablet } from "lucide-react";
+import {
+  AdminRolePreview,
+  ResidentRolePreview,
+  StaffRolePreview,
+  TotemRolePreview,
+} from "@/components/mockups/ProductPreviews";
+import { AUDIENCES, type AudienceId } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
-const pieces = [
-  {
-    kicker: "Painel web",
-    title: "O síndico no comando.",
-    copy: "Multas, advertências, financeiro, reservas, mural e operação do prédio num só lugar — com isolamento por condomínio.",
-  },
-  {
-    kicker: "Totem",
-    title: "A portaria em modo kiosk.",
-    copy: "Tablet na recepção: visitante, encomenda e ponto eletrônico. Pareado por token de dispositivo, sem login humano solto.",
-  },
-  {
-    kicker: "App",
-    title: "Morador e equipe no bolso.",
-    copy: "Push de pacote, ocorrência, comunicado, reserva de área comum e liberação de visita. Colaborador vê escala e espelho de ponto.",
-  },
-];
+const ICONS: Record<AudienceId, typeof Building2> = {
+  sindico: Building2,
+  morador: Smartphone,
+  portaria: Tablet,
+  equipe: HardHat,
+};
 
 export function Ecosystem() {
+  const [selected, setSelected] = useState<AudienceId>("sindico");
+  const current = AUDIENCES.find((a) => a.id === selected) ?? AUDIENCES[0];
+
   return (
-    <section id="sistema" className="py-24 md:py-32">
+    <section id="papeis" className="bg-paper py-24 md:py-32">
       <div className="site-wrap">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <p className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-brand-primary">
-              Ecossistema
-            </p>
-            <h2 className="display-md mt-4">Três frentes. Uma operação.</h2>
-          </div>
-          <p className="lede max-w-sm">
-            Não é um app isolado. É a portaria, a gestão e o morador falando a mesma língua.
+        <div className="max-w-3xl">
+          <p className="tag text-brand-primary">Quatro experiências dedicadas</p>
+          <h2 className="display-md mt-4 text-ink">
+            Cada pessoa do prédio vê apenas o que precisa — conectado à mesma base.
+          </h2>
+          <p className="lede mt-5">
+            Nada de um painel confuso igual para todo mundo. Síndico, morador,
+            portaria e equipe operam em interfaces próprias, com permissões
+            separadas.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 lg:grid-cols-12">
-          <motion.article
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="group overflow-hidden rounded-[1.8rem] border border-ink/10 bg-white p-6 shadow-[0_20px_50px_-32px_rgba(18,21,28,0.4)] lg:col-span-7"
-          >
-            <p className="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-brand-primary">
-              {pieces[0].kicker}
-            </p>
-            <h3 className="mt-2 font-display text-3xl">{pieces[0].title}</h3>
-            <p className="mt-3 max-w-md text-ink-soft">{pieces[0].copy}</p>
-            <div className="mt-6 transition-transform duration-500 group-hover:-translate-y-1">
-              <DashboardPreview compact />
-            </div>
-          </motion.article>
-
-          <div className="grid gap-5 lg:col-span-5">
-            <motion.article
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="rounded-[1.8rem] border border-ink/10 bg-ink p-6"
-            >
-              <TotemPreview />
-              <h3 className="mt-5 font-display text-2xl text-white">{pieces[1].title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/65">{pieces[1].copy}</p>
-            </motion.article>
-
-            <motion.article
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center gap-4 rounded-[1.8rem] border border-ink/10 bg-paper-deep p-5 sm:flex-row"
-            >
-              <PhonePreview />
-              <div>
-                <p className="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-brand-primary">
-                  {pieces[2].kicker}
+        {/* Seletor de papéis */}
+        <div
+          role="tablist"
+          aria-label="Interfaces por perfil do condomínio"
+          className="mt-10 grid grid-cols-2 gap-2.5 sm:grid-cols-4"
+        >
+          {AUDIENCES.map((item) => {
+            const Icon = ICONS[item.id];
+            const active = item.id === selected;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setSelected(item.id)}
+                className={cn(
+                  "flex flex-col items-start gap-2 rounded-2xl border p-4 text-left transition-all duration-200 cursor-pointer",
+                  active
+                    ? "border-brand-primary bg-white shadow-[0_18px_40px_-24px_rgba(33,84,214,0.45)]"
+                    : "border-ink/10 bg-white/55 hover:border-ink/25 hover:bg-white"
+                )}
+              >
+                <div className="flex w-full items-center justify-between">
+                  <span
+                    className={cn(
+                      "flex size-9 items-center justify-center rounded-xl transition-colors",
+                      active
+                        ? "bg-brand-primary text-white"
+                        : "bg-paper-deep text-ink"
+                    )}
+                  >
+                    <Icon className="size-4" />
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-ink-soft">
+                    {item.channel}
+                  </span>
+                </div>
+                <p className="mt-1 font-display text-lg font-semibold text-ink">
+                  {item.label}
                 </p>
-                <h3 className="mt-2 font-display text-2xl">{pieces[2].title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{pieces[2].copy}</p>
-              </div>
-            </motion.article>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Painel do papel ativo */}
+        <div className="mt-8 rounded-[1.8rem] border border-ink/10 bg-white p-6 shadow-[0_24px_60px_-36px_rgba(11,26,51,0.3)] md:p-10">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.id + "-copy"}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.22 }}
+              >
+                <span className="inline-flex items-center gap-2 rounded-full bg-brand-sky/60 px-3 py-1 font-mono text-xs font-semibold text-brand-primary">
+                  {current.label} · {current.channel}
+                </span>
+                <h3 className="mt-4 font-display text-2xl font-semibold text-ink md:text-4xl">
+                  {current.title}
+                </h3>
+                <p className="mt-4 text-base leading-relaxed text-ink-soft">
+                  {current.body}
+                </p>
+
+                <ul className="mt-7 grid gap-3 sm:grid-cols-2">
+                  {current.features.map((feat) => (
+                    <li
+                      key={feat}
+                      className="flex items-start gap-2.5 rounded-xl border border-ink/8 bg-[#fbfaf7] p-3 text-sm font-medium text-ink"
+                    >
+                      <Check className="mt-0.5 size-4 shrink-0 text-brand-primary" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.id + "-preview"}
+                initial={{ opacity: 0, scale: 0.985 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.99 }}
+                transition={{ duration: 0.24 }}
+              >
+                {current.id === "sindico" && <AdminRolePreview />}
+                {current.id === "morador" && <ResidentRolePreview />}
+                {current.id === "portaria" && <TotemRolePreview />}
+                {current.id === "equipe" && <StaffRolePreview />}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
