@@ -2,11 +2,11 @@
  * Conteúdo da landing page.
  *
  * Tudo aqui reflete funcionalidades que existem no código do ecossistema
- * (facili-api, facili-web e facili-app). Antes de anunciar algo novo,
+ * (facili-api e facili-web). Antes de anunciar algo novo,
  * confirme que a rota/tela existe — nada de promessa de slide.
  */
 
-export const APP_URL = "https://app.facilicond.online";
+export const WEB_URL = "https://web.facilicond.online";
 export const CONTACT_EMAIL = "contato@facilicond.com.br";
 
 /* ---------------- Preço (facili-api/src/services/billing.service.ts) ---------------- */
@@ -96,7 +96,7 @@ export const AUDIENCES: Audience[] = [
   {
     id: "sindico",
     label: "Síndico",
-    channel: "Painel web e app",
+    channel: "Painel da administração",
     title: "O prédio inteiro numa tela que abre de manhã.",
     body: "Uma visão de “hoje” com o que pede decisão: ocorrências abertas, reservas, manutenções vencendo e pedidos dos moradores para revisar.",
     features: [
@@ -111,7 +111,7 @@ export const AUDIENCES: Audience[] = [
   {
     id: "morador",
     label: "Morador",
-    channel: "App e PWA",
+    channel: "Portal do morador",
     title: "Tudo do condomínio no bolso — sem baixar mais um grupo.",
     body: "O morador acompanha encomendas, reserva o salão, vota em enquetes e fala com a administração por um canal com histórico.",
     features: [
@@ -170,7 +170,7 @@ export const MORE_MODULES: Module[] = [
   { title: "Veículos e pets", body: "Cadastro por unidade, consulta na portaria." },
   { title: "Classificados", body: "Anúncios entre vizinhos e imóveis para alugar." },
   { title: "Chat", body: "Conversa 1:1 entre morador e administração." },
-  { title: "Achados e perdidos", body: "Itens com foto, do totem para o app." },
+  { title: "Achados e perdidos", body: "Itens com foto, do totem para o portal do morador." },
   { title: "Suporte", body: "Chamados com anexos direto para o time FaciliCond." },
   { title: "Rotinas", body: "Tarefas recorrentes para a equipe não esquecer." },
 ];
@@ -215,7 +215,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "Dá para testar antes de contratar?",
-    a: "Sim. São 7 dias de teste com o sistema completo, para o síndico ver o painel, o app e o totem funcionando com os dados do próprio prédio.",
+    a: "Sim. São 7 dias de teste com o sistema completo, para o síndico ver o painel da administração, o portal do morador e o totem funcionando com os dados do próprio prédio.",
   },
   {
     q: "Preciso comprar equipamento para a portaria?",
@@ -227,7 +227,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "O ponto eletrônico segue a Portaria 671?",
-    a: "O registro acontece no totem com selfie e PIN, cada batida recebe um hash anti-adulteração e o sistema exporta o arquivo AFD. O colaborador acompanha o espelho pelo app.",
+    a: "O registro acontece no totem com selfie e PIN, cada batida recebe um hash anti-adulteração e o sistema exporta o arquivo AFD. O colaborador acompanha o espelho pelo portal no celular.",
   },
   {
     q: "E se o condomínio quiser sair?",

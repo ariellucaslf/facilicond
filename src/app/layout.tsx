@@ -26,11 +26,11 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "FaciliCond — Sistema completo para síndicos, portaria, equipe e moradores",
   description:
-    "Painel web da administração, app do morador, portal do colaborador e totem na portaria conectados. Encomendas com QR de uso único, manutenção preventiva com checklist, documentos versionados e ponto eletrônico com exportação AFD.",
+    "Painel web da administração, portal do morador, portal do colaborador e totem na portaria conectados. Encomendas com QR de uso único, manutenção preventiva com checklist, documentos versionados e ponto eletrônico com exportação AFD.",
   keywords: [
     "gestão de condomínio",
     "sistema para condomínio",
-    "app para moradores",
+    "portal para moradores",
     "totem de portaria",
     "controle de encomendas condomínio",
     "manutenção preventiva predial",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "FaciliCond — Gestão condominial conectada de ponta a ponta",
     description:
-      "Do recebimento na portaria à prestação de contas: painel do síndico, app do morador, totem e equipe no mesmo sistema. A partir de R$ 109,99/mês com 7 dias grátis.",
+      "Do recebimento na portaria à prestação de contas: painel do síndico, portal do morador, totem e equipe no mesmo sistema. A partir de R$ 109,99/mês com 7 dias grátis.",
     locale: "pt_BR",
     type: "website",
   },
