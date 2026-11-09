@@ -315,7 +315,7 @@ export function HeroStage() {
                     </div>
                     <p className="mt-2 text-xs leading-relaxed text-ink-soft">
                       Publicado hoje às 10:30 para o Bloco B. Cada unidade confirma
-                      leitura no app — sem discussão de “ninguém me avisou”.
+                      leitura no portal — sem discussão de “ninguém me avisou”.
                     </p>
                     <div className="mt-3">
                       <div className="flex justify-between font-mono text-[10px] text-ink-soft">
@@ -334,7 +334,7 @@ export function HeroStage() {
         </div>
       </div>
 
-      {/* Conector visual entre Painel do Síndico e App na ponta */}
+      {/* Conector visual entre Painel do Síndico e Portal na ponta */}
       <div className="relative z-20 flex items-center justify-between px-5 py-2">
         <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-brand-primary">
           <ArrowUpDown className="size-3" />
@@ -346,7 +346,7 @@ export function HeroStage() {
         </span>
       </div>
 
-      {/* Cartão conectado — App do Morador / Portal do Colaborador (sem sobreposição negativa) */}
+      {/* Cartão conectado — Portal do Morador / Portal do Colaborador (sem sobreposição negativa) */}
       <div className="relative z-20">
         <AnimatePresence mode="wait">
           {active === "encomenda" && (
@@ -364,13 +364,13 @@ export function HeroStage() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-brand-mint">
                   <QrCode className="size-3.5 shrink-0" />
-                  App do Morador · 304-B
+                  Portal do Morador · 304-B
                 </div>
                 <p className="mt-1 text-sm font-semibold leading-snug text-white">
                   QR de retirada · expira em 5 min
                 </p>
                 <p className="mt-0.5 text-xs text-white/70">
-                  Ou autorize um terceiro pelo app por até 24h.
+                  Ou autorize um terceiro pelo celular por até 24h.
                 </p>
                 <div className="mt-2.5 h-1 overflow-hidden rounded-full bg-white/15">
                   <div className="qr-timer h-full w-full rounded-full bg-brand-mint" />
@@ -419,7 +419,7 @@ export function HeroStage() {
               </div>
               <div className="min-w-0 flex-1">
                 <p className="font-mono text-[10px] uppercase tracking-wider text-brand-mint">
-                  App &amp; PWA · Unidade 304-B
+                  Portal do Morador · Unidade 304-B
                 </p>
                 <p className="mt-0.5 text-sm font-semibold text-white">
                   Leitura registrada às 10:34

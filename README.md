@@ -7,7 +7,6 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)]()
   [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)]()
   [![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)]()
-  [![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)]()
   [![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)]()
   [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)]()
 
@@ -32,7 +31,7 @@ O **FaciliCond** é um produto SaaS (Software as a Service) focado no segmento B
 
 1. **Painel do Síndico (Web):** Centro de controle gerencial, emissão de multas, advertências, relatórios financeiros e operacional.
 2. **Totem de Autoatendimento:** Um kiosk digital que roda em tablets na portaria para registro rápido de entrada/saída de visitantes.
-3. **App do Colaborador e Morador (Mobile):** Ferramenta no bolso para recebimento de encomendas via QR Code, acompanhamento de comunicados oficiais e abertura de ocorrências virtuais.
+3. **Portal do Colaborador e Morador (Web Mobile-First):** Interface responsiva no celular para recebimento de encomendas via QR Code, acompanhamento de comunicados oficiais e abertura de ocorrências virtuais.
 
 ---
 
@@ -48,7 +47,7 @@ Por ser um SaaS atendendo a múltiplos condomínios simultaneamente no mesmo ban
 ### 2. Autenticação Segura e Controle de Dispositivos (Kiosk Mode)
 O Totem de portaria fica em um ambiente físico público e vulnerável. Para mitigar riscos:
 - **Device Tokens:** O Totem não usa login humano tradicional. Ele é pareado uma única vez através de um token de dispositivo exclusivo (Device Access Token).
-- **Kiosk Mode:** O aplicativo React Native (Expo) opera confinado na tela, impedindo que os usuários saiam do app e acessem o sistema operacional. Toda comunicação é cifrada e assinada.
+- **Kiosk Mode:** A interface dedicada de Totem opera em modo quiosque com sessão isolada (`kiosk`), impedindo que os usuários acessem rotas administrativas fora do escopo da portaria. Toda comunicação é cifrada e assinada.
 
 ### 3. Background Jobs e Resiliência Financeira
 Para garantir que a API principal não sofra latência e continue respondendo em poucos milissegundos (sub-50ms):
@@ -74,8 +73,7 @@ graph TD
     classDef external fill:#c53030,stroke:#9b2c2c,stroke-width:2px,color:#fff,rx:8px,ry:8px;
 
     subgraph "Frontend Clients (Views)"
-        A["Facili App<br/>React Native / Expo<br/>App Totem, App Staff e App Morador"]:::client
-        B["Facili Web<br/>Next.js / App Router<br/>Painel Web do Síndico"]:::client
+        A["Facili Web<br/>Next.js / App Router<br/>Painel do Síndico, Portal do Morador, Staff e Totem"]:::client
     end
 
     subgraph "Backend Services (Controllers)"
@@ -88,8 +86,7 @@ graph TD
     end
 
     %% Connections
-    A -- REST API (HTTPS / JWT) --> C
-    B -- REST API (HTTPS / JWT) --> C
+    B -- REST API (HTTPS / Cookies HttpOnly) --> C
     C -- Prisma ORM (TCP) --> D
     C -- BullMQ Job Scheduler --> E
 ```
@@ -98,13 +95,11 @@ graph TD
 
 ## Stack Tecnológico
 
-A escolha tecnológica foi guiada pela busca de estabilidade, tipagem forte e desenvolvimento rápido de um ecossistema multiplataforma (Web e Mobile).
+A escolha tecnológica foi guiada pela busca de estabilidade, tipagem forte e desenvolvimento rápido de uma plataforma Web Mobile-First.
 
 ### Frontend (Client-side)
-- **Painel Administrativo & Financeiro:** Next.js 16 (App Router), React 19
-- **Estilização (Web):** Tailwind CSS v4, Server Components
-- **Mobile (Morador, Staff & Totem):** React Native, Expo SDK
-- **Estilização (Mobile):** NativeWind v4 (Tailwind para React Native)
+- **Plataforma Unificada (Síndico, Morador, Staff & Totem):** Next.js 16 (App Router), React 19
+- **Estilização (Web Mobile-First):** Tailwind CSS v4, Server Components
 
 ### Backend (Server-side)
 - **Runtime:** Node.js (v20+ LTS)

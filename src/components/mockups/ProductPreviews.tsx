@@ -121,7 +121,7 @@ export function ResidentRolePreview() {
             </p>
           </div>
           <span className="rounded-full bg-brand-primary/10 px-2.5 py-1 font-mono text-[10px] font-semibold text-brand-primary">
-            App & PWA
+            Web &amp; Mobile
           </span>
         </div>
 
