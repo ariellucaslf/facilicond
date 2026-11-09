@@ -3,11 +3,11 @@
 import { useState, type CSSProperties } from "react";
 import { ArrowRight, Check, Mail, Minus, Plus } from "lucide-react";
 import {
-  APP_URL,
   calculateMonthlyPrice,
   CONTACT_EMAIL,
   formatBRL,
   PRICING,
+  WEB_URL,
 } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
@@ -19,8 +19,8 @@ const UNIT_PRESETS = [
 ] as const;
 
 const INCLUDED = [
-  "Painel web e app da administração",
-  "App e PWA ilimitado para moradores",
+  "Painel web responsivo da administração",
+  "Portal web ilimitado para moradores",
   "Totem de portaria em tablet pareado",
   "Portal do colaborador e tarefas",
   "Encomendas com QR de 5 min e comprovante",
@@ -229,7 +229,7 @@ export function Plans() {
 
             <div className="mt-6 space-y-3">
               <a
-                href={APP_URL}
+                href={WEB_URL}
                 className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-primary px-6 py-4 text-base font-semibold text-white transition-all duration-200 hover:bg-brand-primary-light"
               >
                 Iniciar {PRICING.trialDays} dias de teste

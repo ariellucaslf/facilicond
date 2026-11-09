@@ -1,6 +1,6 @@
 import { ArrowRight, Calculator, Check } from "lucide-react";
 import { HeroStage } from "@/components/mockups/HeroStage";
-import { APP_URL, formatBRL, PRICING } from "@/lib/content";
+import { formatBRL, PRICING, WEB_URL } from "@/lib/content";
 
 export function Hero() {
   return (
@@ -16,7 +16,7 @@ export function Hero() {
           <div className="inline-flex items-center gap-2.5 rounded-full border border-ink/12 bg-white/85 px-3.5 py-1.5 shadow-2xs">
             <span className="live-dot size-2 rounded-full bg-brand-accent" />
             <span className="tag text-ink">
-              Web · App &amp; PWA · Totem de Portaria · Equipe
+              Administração · Portal do Morador · Totem de Portaria · Equipe
             </span>
           </div>
 
@@ -26,14 +26,14 @@ export function Hero() {
           </h1>
 
           <p className="lede mt-6 max-w-xl">
-            FaciliCond conecta painel do síndico, aplicativo do morador, portal do
+            FaciliCond conecta painel do síndico, portal do morador, portal do
             colaborador e totem na guarita. Encomenda sai com QR de uso único,
             manutenção preventiva segue checklist e comunicado registra quem leu.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <a
-              href={APP_URL}
+              href={WEB_URL}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-primary px-7 py-4 text-base font-semibold text-white shadow-[0_18px_38px_-16px_rgba(33,84,214,0.65)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-primary-dark"
             >
               Testar {PRICING.trialDays} dias grátis

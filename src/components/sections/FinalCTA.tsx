@@ -1,6 +1,6 @@
 import { ArrowRight, Mail } from "lucide-react";
 import { LogoMark } from "@/components/ui/Logo";
-import { APP_URL, CONTACT_EMAIL, PRICING } from "@/lib/content";
+import { CONTACT_EMAIL, PRICING, WEB_URL } from "@/lib/content";
 
 export function FinalCTA() {
   return (
@@ -27,7 +27,7 @@ export function FinalCTA() {
 
             <div className="flex flex-col gap-3 lg:items-end">
               <a
-                href={APP_URL}
+                href={WEB_URL}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-base font-semibold text-navy transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto"
               >
                 Começar {PRICING.trialDays} dias grátis
