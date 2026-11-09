@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
-import { APP_URL } from "@/lib/content";
+import { WEB_URL } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -57,7 +57,7 @@ export function Navbar() {
 
         <div className="hidden items-center gap-2.5 md:flex">
           <a
-            href={APP_URL}
+            href={WEB_URL}
             className="rounded-full px-4 py-2 text-sm font-semibold text-ink-soft transition-colors duration-200 hover:text-ink"
           >
             Entrar
@@ -107,7 +107,7 @@ export function Navbar() {
               ))}
               <div className="mt-3 grid grid-cols-2 gap-2.5 border-t border-ink/10 pt-4">
                 <a
-                  href={APP_URL}
+                  href={WEB_URL}
                   className="rounded-full border border-ink/15 bg-white px-4 py-3 text-center text-sm font-semibold text-ink"
                   onClick={() => setOpen(false)}
                 >

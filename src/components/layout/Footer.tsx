@@ -1,5 +1,5 @@
 import { Logo } from "@/components/ui/Logo";
-import { APP_URL, CONTACT_EMAIL } from "@/lib/content";
+import { CONTACT_EMAIL, WEB_URL } from "@/lib/content";
 
 export function Footer() {
   return (
@@ -83,16 +83,16 @@ export function Footer() {
               </p>
               <ul className="mt-3.5 space-y-2.5 text-white/70">
                 <li>
-                  <a className="transition-colors hover:text-white" href={APP_URL}>
+                  <a className="transition-colors hover:text-white" href={WEB_URL}>
                     Entrar no sistema
                   </a>
                 </li>
                 <li>
                   <a
                     className="transition-colors hover:text-white"
-                    href="https://web.facilicond.online"
+                    href={WEB_URL}
                   >
-                    Painel Web Admin
+                    Painel Web
                   </a>
                 </li>
               </ul>
